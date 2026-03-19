@@ -27,7 +27,7 @@ if systemctl is-active --quiet mongod; then
     echo "✅ MongoDB: RUNNING"
     MONGO_SIZE=$(du -sh /var/lib/mongodb 2>/dev/null | awk '{print $1}')
     echo "   Data size: $MONGO_SIZE"
-    DOCUMENT_COUNT=$(mongo --quiet --eval "db.products.countDocuments()" 2>/dev/null || echo "N/A")
+    DOCUMENT_COUNT=$(mongosh --quiet --eval "db.products.countDocuments()" 2>/dev/null || echo "N/A")
     echo "   Products count: $DOCUMENT_COUNT"
 else
     echo "❌ MongoDB: NOT RUNNING"

@@ -54,7 +54,7 @@ echo "5️⃣  Checking MongoDB..."
 if systemctl is-active --quiet mongod; then
     echo "✅ MongoDB is running"
     # Test connection
-    mongo --quiet --eval "db.adminCommand('ping')" 2>/dev/null && echo "✅ MongoDB connection OK" || echo "⚠️  MongoDB connection failed"
+    mongosh --quiet --eval "db.adminCommand('ping')" 2>/dev/null && echo "✅ MongoDB connection OK" || echo "⚠️  MongoDB connection failed"
 else
     echo "❌ MongoDB is NOT running"
     echo "   Starting MongoDB..."

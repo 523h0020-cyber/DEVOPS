@@ -73,7 +73,7 @@ echo "🔒 [3/3] Đang lấy SSL Certificate từ Let's Encrypt..."
 echo "⚠️  Ensure your domain $DOMAIN is pointing to this server's IP before continuing!"
 read -p "Press Enter to continue..."
 
-sudo certbot certonly --standalone \
+sudo certbot --nginx \
     --agree-tos \
     --non-interactive \
     --email $EMAIL \
