@@ -14,10 +14,18 @@ fi
 
 sleep 5
 
-# 2. Cập nhật Code
 echo "🚚 Đang kéo code từ $REPO_URL (branch: $BRANCH)..."
+
+# ✅ Quay về /tmp (safe, không phải working directory của phase2)
+cd /tmp
+
+# ✅ Xóa folder cũ (safe vì không ở trong nó)
 sudo rm -rf "$PROJECT_DIR/src"
+
+# ✅ Clone code
 git clone -b "$BRANCH" "$REPO_URL" "$PROJECT_DIR/src"
+
+# ✅ Vào ứng dụng
 cd "$APP_DIR"
 npm install
 
