@@ -1,0 +1,962 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" translate="no">
+  <head>
+    <title>Học phí | Tuition</title>
+    <script type="text/javascript" src="/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Scripts/ICanHaz.min.js" type="text/javascript"></script>
+    <script src="/Scripts/underscore-min.js" type="text/javascript"></script>
+    <script src="/Scripts/backbone-min.js" type="text/javascript"></script>
+    <link
+      rel="stylesheet"
+      href="/Scripts/bootstrap-3.3.4/css/bootstrap.min.css"
+    />
+    <link
+      href="/Content/css/reak-normal.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="/Content/css/reak-news.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/layout.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <link
+      href="/Scripts/Choosen/chosen.min.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+    <script
+      src="/Scripts/Choosen/chosen.jquery.min.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function goBackHome() {
+        window.location.assign("https://stdportal.tdtu.edu.vn");
+      }
+    </script>
+    <div id="body-wrapper">
+      <div class="header">
+        <div class="banner" style="vertical-align: middle">
+          <div class="banner-left">
+            <img
+              alt="logo"
+              src="/Content/images/image.png"
+              width="100"
+              height="45"
+            />
+          </div>
+          <div class="banner-center">
+            <img
+              alt="banner"
+              src="/Content/images/banner.png"
+              width="500"
+              height="45"
+            />
+          </div>
+          <div class="banner-right">
+            <div style="font-size: 15px">
+              <div
+                style="
+                  float: left;
+                  line-height: 40px;
+                  font-family: Tahoma;
+                  font-weight: bold;
+                  margin-right: 5px;
+                "
+              >
+                <div
+                  style="color: #7a8dc4; text-decoration: none"
+                  class="student-info"
+                >
+                  Phạm Nguyễn Vĩnh Ph&#250;c
+                </div>
+              </div>
+              <div class="button-wrap">
+                <div class="home-button" onclick="goBackHome()"></div>
+              </div>
+              <div class="button-wrap">
+                <a class="logout-button" href="/User/Logout"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="main">
+        <div id="left-col"></div>
+        <div id="right-col">
+          <div role="navigation">
+            <ul class="nav nav-tabs">
+              <li role="presentation" id="mnu_hocphi" class="">
+                <a href="/">Học phí - Chi phí | Tuition - Charges</a>
+              </li>
+
+              <li
+                role="presentation"
+                id="mnu_thongtinchung_hdthanhtoanhp"
+                class=""
+              >
+                <a href="../../Content/filepdf/hd.pdf">
+                  Hướng dẫn Thanh toán học phí | Instructions on how to pay for
+                  tuition</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <script
+            src="/Scripts/Models/HocPhi/HocPhiDetail.js?v=0107072359"
+            type="text/javascript"
+          ></script>
+          <script
+            src="/Scripts/Views/HocPhi/HocPhiDetail.js?v=0107072359"
+            type="text/javascript"
+          ></script>
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="HocKyID"> Học kỳ | Semester</label>
+                <p
+                  id="thongbaoHocKy2"
+                  style="
+                    color: Red;
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                  "
+                >
+                  Hiện tại chưa có dữ liệu học phí, SV vui lòng liên hệ P. Tài
+                  chính nếu có vấn đề thắc mắc.
+                </p>
+                <div class="controls">
+                  <select
+                    id="ddlHocKyID"
+                    name="HocKyID"
+                    data-live-search="true"
+                    class="form-control select-by-term search-select"
+                  ></select>
+                </div>
+                <p
+                  id="thongbaoHocKy"
+                  style="color: Red; margin-top: 5px; font-weight: bold"
+                ></p>
+              </div>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li id="tab_header_1" class="active">
+                <a href="#tab_1" data-toggle="tab">Học phí | Tuition</a>
+              </li>
+
+              <li id="tab_header_2" style="display: none">
+                <a href="#tab_2" data-toggle="tab"
+                  >Chi phí khác | Other charges</a
+                >
+              </li>
+
+              <li id="tab_header_3">
+                <a href="#tab_3" data-toggle="tab">Thanh toán | Payment</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                <div class="row"></div>
+                <br />
+                <table id="tblHocPhi" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>
+                        NỢ KỲ TRƯỚC<br />
+                        (Previous Pending Charges)
+                      </th>
+                      <th>
+                        HỌC PHÍ HỌC KỲ<br />
+                        (Semester Tuition)
+                      </th>
+                      <th>
+                        MIỄN GIẢM<br />
+                        (Reduction)
+                      </th>
+                      <th>
+                        TỔNG HP PHẢI NỘP<br />
+                        (Total tuition unpaid)
+                      </th>
+                      <th>
+                        TỔNG HỌC PHÍ ĐÃ NỘP<br />
+                        (Total tuition paid)
+                      </th>
+                      <th>
+                        SỐ TIỀN CÒN PHẢI NỘP<br />
+                        (Remaining unpaid tuition)
+                      </th>
+
+                      <th>
+                        GHI CHÚ<br />
+                        (Note)
+                      </th>
+                    </tr>
+                    <tr>
+                      <th>(1)</th>
+                      <th>(2)</th>
+                      <th>(3)</th>
+                      <th>(4) = (1) + (2) - (3)</th>
+                      <th>(5)</th>
+                      <th>(6) = (4) - (5)</th>
+                      <th>(7)</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+
+                <p class="luu-y" id="tblHocPhi-LuuY-DH"></p>
+                <div id="tblHocPhi-ghichu-hocphitamthu">
+                  <p>
+                    <b><i>* Sinh viên lưu ý: </i></b>
+                  </p>
+                  <p>
+                    - Căn cứ theo kết quả đăng ký môn học học kỳ 1/2018-2019,
+                    Phòng Tài chính tạm tính mức học phí phải thu của học kỳ;
+                    sau khi có thời khóa biểu chính thức Nhà Trường sẽ xác định
+                    lại mức học phí này.
+                  </p>
+                  <p>
+                    - Sau khi kết thúc HK hè/2017-2018, Phòng Đại học sẽ cập
+                    nhật các điểm đã đạt của sinh viên để kiểm tra điều kiện
+                    tiên quyết môn học, sinh viên sẽ bị hủy kết quả đăng ký môn
+                    học các môn chưa đạt điều kiện tiên quyết.
+                  </p>
+                  <p>
+                    - Các sinh viên bị hủy nhóm được nhà trường tạo điều kiện
+                    đăng ký bổ sung (đăng ký bổ sung môn học theo đúng số môn
+                    học bị hủy và số tín chỉ tương đương số tín chỉ bị hủy).
+                    Phòng Tài chính tính học phí chênh lệch do sinh viên bị hủy
+                    nhóm, lớp và thông báo học phí chính thức.
+                  </p>
+                  <p style="color: Red">
+                    <b
+                      >- Sinh viên không hoàn tất học phí theo quy định, sẽ
+                      không có tên trong danh sách học.</b
+                    >
+                  </p>
+                </div>
+                <div id="chi-tiet-hoc-phi-info">
+                  <h2>
+                    Môn tiếng Anh, Môn học lại, môn ngoài chương trình đào
+                    tạo,...
+                  </h2>
+
+                  <table
+                    id="tblCTHocPhi"
+                    width="100%"
+                    class="table table-hover"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          Mã MH
+                          <br />
+                          (Course code)
+                        </th>
+                        <th>
+                          Tên MH
+                          <br />
+                          (Course name)
+                        </th>
+                        <th>
+                          Ngày đăng ký (trên website ĐKMH)
+                          <br />
+                          (Registration date (on the Course Registration
+                          website))
+                        </th>
+                        <th>
+                          Số tiền<br />
+                          (Amount)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <table width="100%" class="table table-hover">
+                    <tbody>
+                      <td>
+                        <p id="tblCTHocPhi-tong-so-mon" class="luu-y"></p>
+                      </td>
+                      <td class="number">
+                        <p id="tblCTHocPhi-tong-so-tien" class="luu-y"></p>
+                      </td>
+                    </tbody>
+                  </table>
+
+                  <h2>Môn học theo lộ trình đào tạo</h2>
+                </div>
+                <div>
+                  <table
+                    id="tblMonChuaTinhHocPhi"
+                    width="100%"
+                    class="table table-hover"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          Mã MH
+                          <br />
+                          (Course code)
+                        </th>
+                        <th>
+                          Tên MH
+                          <br />
+                          (Course name)
+                        </th>
+                        <th>
+                          Nhóm
+                          <br />
+                          (Group)
+                        </th>
+                        <th>
+                          Ngày đăng ký (trên website ĐKMH)
+                          <br />
+                          (Registration date (on the Course Registration
+                          website))
+                        </th>
+                        <th>
+                          Trạng thái
+                          <br />
+                          (Status)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <p id="tblMonChuaTinhHocPhi-tong-so-mon" class="luu-y"></p>
+                  <div></div>
+                </div>
+                <h2>Lịch sử thanh toán | Payment history</h2>
+                <table
+                  id="tblCTThanhToan"
+                  width="100%"
+                  class="table table-hover"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        Ngày đóng<br />
+                        (Date of payment)
+                      </th>
+                      <th>
+                        Số tiền<br />
+                        (Amount)
+                      </th>
+                      <th>
+                        Hình thức thanh toán<br />
+                        (Method of payment)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+                <p>
+                  Hình thức thanh toán: TM: tiền mặt. CK: Chuyển khoản | Method
+                  of payment: TM - Cash; CK: Transfer
+                </p>
+                <script id="hocphiItemView" type="text/html">
+                  <td class="number">{{StrDebtBefore}}</td>
+                  <td class="number">{{StrSubTotal}}</td>
+                  <td class="number red-bold">{{StrDecrease}}</td>
+                  <td class="number red-bold">{{StrTotal}}</td>
+                  <td class="number red-bold">{{StrPaid}}</td>
+                  <td class="number red-bold">{{StrRemain}}</td>
+                  <td>{{Note}}</td>
+                </script>
+                <script id="CThocphiItemView" type="text/html">
+                  <td>{{SubjectID}}</td>
+                  <td>{{TenMH}}</td>
+                  <td class="date" width="20%">
+                    {{StrNgayDangKyTrenWebsiteDKMH}}
+                  </td>
+                  <td class="number">{{StrThanhTien}}</td>
+                </script>
+                <script id="CTThanhToanItemView" type="text/html">
+                  <td class="date" width="10%">{{StrPaidDate}}</td>
+                  <td class="number">{{StrTotalCost}}</td>
+                  <td>{{HinhThucThanhToanID}}</td>
+                </script>
+                <script id="MonChuaTinhHocPhiItemTpl" type="text/html">
+                  <td>{{MonHocID}}</td>
+                  <td>{{TenMonHoc}}</td>
+                  <td>{{Nhom}}</td>
+                  <td class="date" width="20%">{{StrNgayDangKy}}</td>
+                  <td>{{TrangThai}}</td>
+                </script>
+              </div>
+              <div class="tab-pane" id="tab_2">
+                <div id="chi-tiet-le-phi-info">
+                  <h2>Phòng tài chính | Department for Finance</h2>
+                  <table id="tblCTLePhi" width="100%" class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>
+                          Nội dung<br />
+                          (Contents)
+                        </th>
+                        <th align="right">
+                          Số tiền<br />
+                          (Amount)
+                        </th>
+                        <th align="right">
+                          Đã thanh toán<br />
+                          (Paid amount)
+                        </th>
+                        <th align="right">
+                          Còn nợ<br />
+                          (Owing amount)
+                        </th>
+                        <th>
+                          Trạng thái<br />
+                          (Status)
+                        </th>
+                        <th>
+                          Ghi chú<br />
+                          (Note)
+                        </th>
+                        <th align="right">
+                          Thời gian cập nhật sau cùng<br />
+                          (The latest updated time)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <script id="ChiTietLePhiItemTpl" type="text/html">
+                    <td>{{Comment}}</td>
+                    <td class="number">{{StrTotal}}</td>
+                    <td class="number">{{StrPaid}}</td>
+                    <td class="number red-bold">{{StrRemain}}</td>
+                    <td>{{TrangThai}}</td>
+                    <td>{{GhiChu}}</td>
+                    <td class="date" width="20%">
+                      {{StrThoiGianCapNhatSauCung}}
+                    </td>
+                  </script>
+                </div>
+                <div id="chi-tiet-le-phi-tu-nop-don-info">
+                  <h2>Chi phí nộp đơn</h2>
+                  <table
+                    id="tblCTLePhi-TuNopDon"
+                    width="100%"
+                    class="table table-hover"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Loại đơn</th>
+                        <th>Ngày nộp đơn</th>
+                        <th>
+                          Số tiền<br />
+                          (Amount)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <script id="ChiTietLePhi_TuNopDonItemTpl" type="text/html">
+                    <td>{{TenLoaiDon}}</td>
+                    <td>{{StrThoiGianNopDon}}</td>
+                    <td class="number">{{StrTongTien}}</td>
+                  </script>
+                </div>
+              </div>
+              <p class="hidden">
+                <i><b>*Mã giao dịch hết hiệu lực:</b></i> là mã đã hết hiệu lực
+                theo thời gian thông báo. Vui lòng không sử dụng mã giao dịch
+                này để nộp học phí/chi phí.
+              </p>
+              <br />
+              <div class="tab-pane" id="tab_3">
+                <div id="chi_tiet_ma_dot_thanh_toan_info">
+                  <table
+                    id="tblChiTietMaDotThanhToan"
+                    width="100%"
+                    class="table table-hover"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          STT<br />
+                          (Index)
+                        </th>
+                        <th>
+                          Dịch vụ<br />
+                          (Service)
+                        </th>
+                        <th class="hidden">
+                          Nội dung<br />
+                          (Contents)
+                        </th>
+                        <th>
+                          Ghi chú<br />
+                          (Note)
+                        </th>
+                        <th align="left" style="text-align: left">
+                          Thời gian đóng<br />
+                          (Payment deadline)
+                        </th>
+                        <th align="right" style="text-align: right">
+                          Số tiền<br />
+                          (Amount)
+                        </th>
+                        <th>
+                          Trạng thái thanh toán<br />
+                          (Status)
+                        </th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  <script id="ChiTietMaDotThanhToanItemTpl" type="text/html">
+                    <td>{{STT}}</td>
+                    <td>{{LoaiHoaDon}}</td>
+                    <td class="hidden">{{HocKy}}</td>
+                    <td>{{Comment}}</td>
+                    <td>{{StrNgayBatDau}} -> {{StrNgayKetThuc}}</td>
+                    <td
+                      style="color:red;font-weight:bold;height:200%;"
+                      class="number"
+                      style="cursor:pointer;"
+                    >
+                      {{StrTotal}}
+                    </td>
+                    <td>{{Status}}</td>
+                    <td>
+                      <button
+                        href="#"
+                        class="btn btn-danger {{ShowQRCode}}"
+                        onclick='fnShowQR("{{Code}}")'
+                      >
+                        Thanh toán
+                      </button>
+                    </td>
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="qrModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="qrModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">
+                      Thông tin chuyển khoản
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div
+                    class="modal-body"
+                    id="qrContainer"
+                    style="text-align: center; margin-bottom: 10px"
+                  >
+                    <!-- Nội dung sẽ được thêm ở đây -->
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="ckModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="ckModalLabel"
+              aria-hidden="true"
+            >
+              <div
+                class="modal-dialog"
+                role="document"
+                style="width: auto; max-width: 60em"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ckModalLabel">
+                      Thông tin chuyển khoản
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div
+                    class="modal-body"
+                    id="ckContainer"
+                    style="text-align: left; margin-bottom: 10px"
+                  >
+                    <span
+                      >Người nộp học phí bằng hình thức chuyển khoản theo thông
+                      tin như sau:</span
+                    >
+                    <div
+                      style="
+                        text-align: left;
+                        margin: 10px;
+                        border: 1px solid black;
+                        padding: 15px;
+                        border-radius: 20px;
+                      "
+                    >
+                      <table
+                        style="font-size: 20px !important; text-align: left"
+                      >
+                        <tr>
+                          <td style="width: 9em"><li>Tên tài khoản:</li></td>
+                          <td><b>TRUONG DAI HOC TON DUC THANG</b></td>
+                        </tr>
+                        <tr>
+                          <td style="width: 9em"><li>Số tài khoản:</li></td>
+                          <td><b>0071000758807</b></td>
+                        </tr>
+                        <tr>
+                          <td style="width: 9em"><li>Tên ngân hàng:</li></td>
+                          <td>
+                            <b>Ngân hàng Vietcombank - Chi nhánh Hồ Chí Minh</b>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width: 9em"><li>Nội dung:</li></td>
+                          <td>
+                            <b
+                              id="ndck"
+                              style="color: Red"
+                              onclick="copyND()"
+                            ></b>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <span>
+                      Sau 02 ngày kể từ ngày chuyển khoản nộp học phí vui lòng
+                      đăng nhập vào "Cổng thông tin sinh viên" để kiểm tra đối
+                      chiếu số tiền học phí đã nộp. Nếu có sai sót hoặc trường
+                      hợp đã nộp học phí nhưng không được cập nhật trên hệ thống
+                      vui lòng phản hồi cho Phòng Tài chính bằng các gửi email
+                      về địa chỉ
+                      <a href="mailto:tuition@tdtu.edu.vn" target="_blank"
+                        >tuition@tdtu.edu.vn</a
+                      >
+                      để được hỗ trợ. Vui lòng kiểm tra học phí trong thời gian
+                      theo thông báo trước khi tiến hành gửi email.</span
+                    >
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Modal bao tri -->
+            <div
+              class="modal fade"
+              id="ckModalBaoTri"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="ckModalLabel"
+              aria-hidden="true"
+            >
+              <div
+                class="modal-dialog"
+                role="document"
+                style="width: auto; max-width: 60em"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="ckModalLabelBaoTri">
+                      Thông tin bảo trì
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div
+                    class="modal-body"
+                    id="ckContainerBaoTri"
+                    style="text-align: left; margin-bottom: 10px"
+                  >
+                    <span id="message_content"></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript">
+            function copyFunc(td) {
+              /* Get the text field */
+              var copyText = $(td).parents("tr").find("td.code")[0];
+              var el = document.createElement("textarea");
+              if ($(copyText).text() != "") {
+                el.textContent = $(copyText).text();
+              } else {
+                el.textContent = " ";
+              }
+              document.body.appendChild(el);
+              el.select();
+              document.execCommand("copy");
+              document.body.removeChild(el);
+
+              var modalCopied = document.createElement("div");
+              modalCopied.setAttribute("class", "copied-tooltip");
+              modalCopied.setAttribute(
+                "style",
+                "border:1px solid black; border-radius:5px; height:50px; width:100px; position:absolute; left:45%; bottom:30%; font-size: 20px; background:white; text-align:center; line-height:2.0;"
+              );
+              modalCopied.textContent = "Copied!";
+              document.body.appendChild(modalCopied);
+              $(modalCopied).fadeOut(2000, function () {
+                modalCopied.remove();
+              });
+            }
+
+            function copyND() {
+              navigator.clipboard
+                .writeText($("#ndck").text())
+                .then(() => {
+                  var modalCopied = document.createElement("div");
+                  modalCopied.setAttribute("class", "copied-tooltip");
+                  modalCopied.setAttribute(
+                    "style",
+                    "border:1px solid black; border-radius:5px; height:50px; width:100px; position:absolute; left:45%; bottom:30%; font-size: 20px; background:white; text-align:center; line-height:2.0;"
+                  );
+                  modalCopied.textContent = "Copied!";
+                  document.body.appendChild(modalCopied);
+                  $(modalCopied).fadeOut(2000, function () {
+                    modalCopied.remove();
+                  });
+                })
+                .catch((err) => {
+                  console.error("Failed to copy text: ", err);
+                });
+            }
+
+            function fnShowQR(obj) {
+              //get thông tin billing
+              var formData = new FormData();
+              formData.append("code", obj);
+              $.ajax({
+                url: "/HocPhi/GetThongTinThanhToan", // Thay thế bằng URL endpoint thực tế
+                type: "POST",
+                async: false,
+                dataType: "json",
+                data: formData,
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                success: function (data) {
+                  if (data.hasData == true) {
+                    // Nếu server trả về true
+                    if (data.baotri == true) {
+                      $("#message_content").text(data.message);
+                      $("#ckModalBaoTri").modal("show");
+                      return;
+                    }
+                    if (data.quahan == true) {
+                      alert("Hóa đơn đã quá hạn thanh toán");
+                    } else {
+                      if (data.result == false) {
+                        alert("Có lỗi xảy ra, không thể tạo QR code");
+                      }
+                      var qrUrl =
+                        "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" +
+                        encodeURIComponent(data.data_crc_table);
+                      var html =
+                        ` <div>
+                                        <img src="/Content/images/vietQR_logo.png" id="logo_vietQR" style=" width: 50%;">
+                                    </div>
+                                    <div class="qr-code">
+                                        <img src="` +
+                        qrUrl +
+                        `" alt="QR Code" width="60%">
+                                    </div>
+                                    <div style="margin-bottom:10px;">
+                                        <img src="/Content/images/logo_VCB.jpg" alt="Bank Logo" id="logo_bank" style=" width: 42%; padding-bottom:10px;">
+                                    </div>
+                                    <div class="info-qr paddingleft">
+                                        <table style="font-size: 20px !important;text-align: left;">
+                                            <tr><td style="width:7em;">MSSV:</td><td><b>` +
+                        data.mssv +
+                        `</b></td></tr>
+                                            <tr><td style="width:7em;">Họ tên:</td><td><b>` +
+                        data.hoten +
+                        `</b></td></tr>
+                                            <tr style="display:none;"><td style="width:7em;">Số TK:</td><td><b>` +
+                        data.stk +
+                        `</b></td></tr>
+                                            <tr><td style="width:7em;">Tên TK:</td><td>TRUONG DH TON DUC THANG</td></tr>
+                                            <tr style="display:none;"><td style="width:7em;">Mã giao dịch:</td><td><b>` +
+                        data.code +
+                        `</b></td></tr>
+                                            <tr><td style="width:7em;">Số Tiền:</td><td>` +
+                        data.soTienVietQR
+                          .toString()
+                          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") +
+                        ` VND</td></tr>
+                                            <tr><td style="width:7em;">Nội dung:</td><td>` +
+                        data.noidung +
+                        `</td></tr>
+                                        </table>
+                                    </div>
+                                    <div class="footer-qr">
+                                    <span style="display:block;text-align:left;">
+                                        Thời hạn thanh toán: <span>` +
+                        data.thoihanthanhtoan +
+                        `</span><br>
+                                        Sau khi đóng tiền thành công vui lòng đợi 2-3 phút để hệ thống gạch nợ, không thanh toán lại lần 2
+                                        </span>
+                                    
+                                    <br>
+                                    <br>
+                                    <span style="display:block;text-align:left;">
+                                    Ghi chú:</td><td>Trường hợp người học không nộp học phí bằng hình thức quét mã QR Code,
+                                                vui lòng xem hướng dẫn nộp học phí <a href="#" onclick="showCKModal('` +
+                        data.code +
+                        `','` +
+                        data.hotenkhongdau +
+                        `')">tại đây</a>.</span>
+                                            
+                                    </div>`;
+                      $("#qrContainer").html(html);
+                      // Hiển thị modal
+                      $("#qrModal").modal("show");
+                      let currentDelay = 1000;
+                      let counter = 150;
+                      startInterval(currentDelay, counter, obj);
+                    }
+                  }
+                },
+                error: function (xhr, status, error) {
+                  //console.log('Error while fetching data from server:', error);
+                },
+              });
+            }
+
+            function startInterval(delay, counter, code) {
+              var html_success = ` <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill='#15b402' width="100%" height="90%"  class="bi bi-check2-circle" viewBox="0 0 16 16">
+              <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+              <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"/>
+                </svg><span style="font-size:3rem; color:#15b402;">Thanh toán thành công</span>
+                            </div>`;
+              var html_overtime = `<div>
+                       <svg xmlns="http://www.w3.org/2000/svg"  width="70%" height="60%" fill="#d81b05" class="bi bi-x-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                    </svg><br/>
+                        <span style="font-size:3rem; color:#d81b05;">Quá thời gian thanh toán</span>
+                    </div>`;
+              var count = 0;
+              var checkInterval = setInterval(function () {
+                //console.log(count);
+                if (count >= counter) {
+                  clearInterval(checkInterval);
+                  $("#qrContainer").html(html_overtime);
+                  //alert("Quá thời hạn thanh toán");
+                  //                    if (!$('#qrModal').hasClass('show')) {
+                  //                        setInterval(function () { window.location.reload(); }, 5000);
+                  //                    }
+
+                  return;
+                }
+                var formData = new FormData();
+                formData.append("code", code);
+                $.ajax({
+                  url: "/HocPhi/CheckThanhToan", // Thay thế bằng URL endpoint thực tế
+                  type: "Post",
+                  async: false,
+                  dataType: "json",
+                  data: formData,
+                  contentType: false, // Not to set any content header
+                  processData: false, // Not to process data
+                  success: function (data) {
+                    //console.log(data);
+                    if (data.dathanhtoan == true) {
+                      // Nếu server trả về true
+                      clearInterval(checkInterval); // Dừng kiểm tra
+                      $("#qrContainer").html(html_success);
+                      setInterval(function () {
+                        window.location.reload();
+                      }, 5000);
+                    }
+                  },
+                  error: function (xhr, status, error) {
+                    //console.log('Error while fetching data from server:', error);
+                  },
+                });
+                count++;
+              }, delay); // 10 giây (10,000 milliseconds)
+            }
+
+            function showCKModal(code, hotenkhongdau) {
+              // Hiển thị modal
+              $("#qrModal").modal("hide");
+              $("#ndck").text(code + " " + hotenkhongdau);
+              // Hiển thị modal
+              $("#ckModal").modal("show");
+            }
+          </script>
+        </div>
+      </div>
+      <div class="footer" align="center">
+        <div style="padding: 10px 0px 10px 0px">
+          ©2013 Đại học Tôn Đức Thắng
+          <br />
+          Ứng dụng được phát triển bởi TDT Software Team
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
