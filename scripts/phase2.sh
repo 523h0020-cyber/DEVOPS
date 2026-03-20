@@ -37,7 +37,7 @@ cd $APP_DIR
 npm install
 
 # Khởi động app qua PM2 (App nghe ở port 3000 theo main.js)
-pm2 stop midterm-app || true # Dừng app cũ nếu có
+pm2 delete midterm-app || true # Dừng app cũ nếu có
 pm2 start main.js --name "midterm-app"
 pm2 save
 

@@ -51,7 +51,7 @@ echo ""
 echo "▶️  Deploying PM2 Ecosystem Configuration..."
 cp $SCRIPTS_DIR/ecosystem.config.js $PROJECT_DIR/src/
 cd $PROJECT_DIR/src/sample-midterm-project/sample-midterm-node.js-project
-pm2 stop all || true
+pm2 delete all || true
 pm2 start $PROJECT_DIR/src/ecosystem.config.js
 pm2 save
 
