@@ -16,7 +16,7 @@ PROJECT_DIR="/var/www/midterm-app"
 
 # 1. Install Certbot for Let's Encrypt
 echo "📦 [1/4] Đang cài đặt Certbot (Let's Encrypt)..."
-apt-get install -y certbot python3-certbot-nginx
+sudo apt-get install -y certbot python3-certbot-nginx
 
 # 2. Create temporary HTTP-only Nginx config for ACME validation
 echo "🌐 [2/4] Đang tạo config HTTP tạm thời cho ACME validation..."

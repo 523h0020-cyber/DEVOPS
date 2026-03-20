@@ -49,11 +49,25 @@ echo "✅ MongoDB backup scheduled daily at 2 AM"
 # Step 4: Copy Ecosystem Config
 echo ""
 echo "▶️  Deploying PM2 Ecosystem Configuration..."
+
+# 1. Copy file cấu hình ecosystem vào thư mục source
 cp $SCRIPTS_DIR/ecosystem.config.js $PROJECT_DIR/src/
+
+# 2. Di chuyển vào đúng thư mục chứa file main.js của app
 cd $PROJECT_DIR/src/sample-midterm-project/sample-midterm-node.js-project
-pm2 delete all || true
+
+# 3. DỌN DẸP SẠCH SẼ (Fix lỗi chiếm Port 3000 vĩnh viễn)
+echo "   Cleaning up old PM2 processes..."
+pm2 delete all || true 
+
+# 4. Khởi động lại ứng dụng bằng cấu hình hệ sinh thái (ecosystem)
+echo "   Starting application with Ecosystem config..."
 pm2 start $PROJECT_DIR/src/ecosystem.config.js
+
+# 5. Lưu trạng thái PM2 hiện tại để tự động chạy lại khi Server Reboot
 pm2 save
+
+echo "✅ PM2 has been successfully configured and started!"
 
 # Step 5: Phase 3 SSL Setup
 echo ""
