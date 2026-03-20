@@ -38,6 +38,7 @@ apt-get install -y nginx
 
 # Setup basic Nginx firewall rules if UFW is active
 echo "Configuring firewall..."
+ufw allow 22/tcp
 ufw allow 'Nginx Full' || true
 
 # 6. Set up project directories
