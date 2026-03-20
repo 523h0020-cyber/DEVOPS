@@ -1,0 +1,143 @@
+# ===========================
+# Dependencies
+# ===========================
+node_modules/
+vendor/
+.pnp
+.pnp.js
+
+# ===========================
+# Environment Variables
+# ===========================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+*.env
+
+# ===========================
+# Build Outputs
+# ===========================
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+*.tsbuildinfo
+
+# ===========================
+# Logs
+# ===========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===========================
+# Uploads / Media
+# ===========================
+uploads/
+public/uploads/
+storage/
+media/
+
+# ===========================
+# OS-specific
+# ===========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ===========================
+# IDEs & Editors
+# ===========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===========================
+# Testing & Coverage
+# ===========================
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+playwright-report/
+
+# ===========================
+# Terraform / IaC
+# ===========================
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ===========================
+# Kubernetes / Helm
+# ===========================
+charts/*.tgz
+
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+.eggs/
+.venv/
+venv/
+ENV/
+
+# ===========================
+# Java / Maven / Gradle
+# ===========================
+target/
+*.class
+*.jar
+*.war
+.gradle/
+build/
+
+# ===========================
+# Secrets & Certificates
+# ===========================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+
+# ===========================
+# Miscellaneous
+# ===========================
+tmp/
+temp/
+.tmp/
+*.tmp
+*.bak
+*.orig
