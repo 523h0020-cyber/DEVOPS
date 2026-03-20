@@ -20,6 +20,7 @@ module.exports = {
       min_uptime: '10s',
       listen_timeout: 10000,
       kill_timeout: 5000,
+      restart_delay: 3000,
       shutdown_with_message: true
     }
   ]
