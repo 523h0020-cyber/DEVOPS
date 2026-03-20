@@ -6,8 +6,8 @@ export DOMAIN="523h0020.site"
 export EMAIL="lenamgiang5@gmail.com"
 
 # 2. Thông tin Source Code
-export REPO_URL="- https://github.com/523h0020-cyber/DEVOPS.git"
-export BRANCH="-b feature/setups-scripts" # Thêm nhánh nếu sau này cần đổi nhánh deploy
+export REPO_URL="https://github.com/523h0020-cyber/DEVOPS.git"
+export BRANCH="feature/setup-scripts" # Branch để deploy
 
 # 3. Đường dẫn thư mục (Paths)
 export PROJECT_DIR="/var/www/midterm-app"

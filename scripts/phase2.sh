@@ -13,9 +13,9 @@ if ! command -v mongod &> /dev/null; then
 fi
 
 # 2. Cập nhật Code
-echo "🚚 Đang kéo code từ $REPO_URL..."
+echo "🚚 Đang kéo code từ $REPO_URL (branch: $BRANCH)..."
 sudo rm -rf "$PROJECT_DIR/src"
-git clone "$REPO_URL" "$PROJECT_DIR/src"
+git clone -b "$BRANCH" "$REPO_URL" "$PROJECT_DIR/src"
 cd "$APP_DIR"
 npm install
 
