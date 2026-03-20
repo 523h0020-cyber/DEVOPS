@@ -13,11 +13,12 @@ fi
 # Bước 2: Cài app & DB (Phase 2)
 bash "$SCRIPTS_DIR/phase2.sh"
 
-# Bước 3: DỌN DẸP PORT 3000 (Sử dụng file cleanup bạn vừa yêu cầu)
+# Bước 3: DỌN DẸP PORT 3000 (Sử dụng file cleanup )
 bash "$SCRIPTS_DIR/cleanup-port.sh"
 
 # Bước 4: Chạy App bằng PM2
 echo "▶️ Đang khởi động ứng dụng bằng PM2..."
+cd /tmp
 cd "$APP_DIR"
 pm2 start main.js --name "midterm-app"
 pm2 save
