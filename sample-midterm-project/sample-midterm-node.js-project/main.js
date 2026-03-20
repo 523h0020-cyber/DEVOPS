@@ -48,22 +48,9 @@ async function start() {
 
   await dataSource.init(usingMongo);
 
-  const server = app.listen(PORT, () => {
+  app.listen(PORT, () => {
     console.log(`Server listening on port http://localhost:${PORT} — hostname: ${os.hostname()}`);
     console.log(`Data source in use: ${dataSource.isMongo ? 'mongodb' : 'in-memory'}`);
-  });
-
-  // Enable SO_REUSEADDR to allow quick restart after crash
-  server.setsockopt && server.setsockopt(1, 15, 1); // SOL_SOCKET, SO_REUSEADDR
-  
-  server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-      console.error(`Port ${PORT} is already in use. Waiting 2s before retry...`);
-      process.exit(1); // Let PM2 restart
-    } else {
-      console.error('Server error:', err);
-      throw err;
-    }
   });
 }
 

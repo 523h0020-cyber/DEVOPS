@@ -12,6 +12,8 @@ if ! command -v mongod &> /dev/null; then
     sudo systemctl enable --now mongod
 fi
 
+sleep 5
+
 # 2. Cập nhật Code
 echo "🚚 Đang kéo code từ $REPO_URL (branch: $BRANCH)..."
 sudo rm -rf "$PROJECT_DIR/src"

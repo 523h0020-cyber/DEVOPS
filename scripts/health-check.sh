@@ -27,6 +27,16 @@ if systemctl is-active --quiet mongod; then
     echo "   Data size: $MONGO_SIZE"
     DOCUMENT_COUNT=$(mongosh --quiet --eval "db.products.countDocuments()" 2>/dev/null || mongo --quiet --eval "db.products.count()" 2>/dev/null || echo "N/A")
     echo "   Products count: $DOCUMENT_COUNT"
+    
+    # Check if app is using MongoDB or in-memory
+    if pm2 show midterm-app 2>/dev/null | grep -q "online" || pm2 list 2>/dev/null | grep -q "midterm-app"; then
+        LAST_LOG=$(tail -1 /home/ubuntu/.pm2/logs/midterm-app-out.log 2>/dev/null || tail -1 /root/.pm2/logs/midterm-app-out.log 2>/dev/null || echo "")
+        if echo "$LAST_LOG" | grep -q "using mongodb"; then
+            echo "   🟢 App Data Source: MONGODB (connected)"
+        elif echo "$LAST_LOG" | grep -q "in-memory"; then
+            echo "   🟡 App Data Source: IN-MEMORY (fallback mode)"
+        fi
+    fi
 else
     echo "❌ MongoDB: NOT RUNNING"
     echo "   Start with: sudo systemctl start mongod"
